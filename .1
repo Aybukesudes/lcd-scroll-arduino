@@ -1,0 +1,40 @@
+#include <LiquidCrystal.h>
+
+// LCD pinleri
+const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
+void setup() {
+  // LCD'yi başlat
+  lcd.begin(16, 2);
+  // Mesajı ilk satıra yaz
+  lcd.print("Hello, World! This is a scrolling text example.");
+}
+
+void loop() {
+  // Mesajı kaydır
+  for (int positionCounter = 0; positionCounter < 29; positionCounter++) {
+    // Ekranı sağa kaydır
+    lcd.scrollDisplayRight();
+    // 250 milisaniye bekle
+    delay(250);
+  }
+  
+  // Mesajı tekrar başa almak için ekranı temizle ve mesajı tekrar yaz
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Hello, World! This is a scrolling text example.");
+  
+  // Mesajı sola kaydır
+  for (int positionCounter = 0; positionCounter < 29; positionCounter++) {
+    // Ekranı sola kaydır
+    lcd.scrollDisplayLeft();
+    // 250 milisaniye bekle
+    delay(250);
+  }
+  
+  // Mesajı tekrar başa almak için ekranı temizle ve mesajı tekrar yaz
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Hello, World! This is a scrolling text example.");
+}
